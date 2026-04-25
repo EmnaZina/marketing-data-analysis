@@ -1,0 +1,30 @@
+campaign,budget
+Facebook,100
+Google,200
+Instagram,150import csv
+
+filename = "data.csv"
+
+total = 0
+count = 0
+max_budget = 0
+best_campaign = ""
+
+with open(filename, "r") as file:
+    reader = csv.DictReader(file)
+
+    for row in reader:
+        campaign = row["campaign"]
+        budget = float(row["budget"])
+
+        total += budget
+        count += 1
+
+        if budget > max_budget:
+            max_budget = budget
+            best_campaign = campaign
+
+print("Total budget:", total)
+print("Average budget:", total / count if count > 0 else 0)
+print("Number of campaigns:", count)
+print("Best campaign:", best_campaign, "with", max_budget)
